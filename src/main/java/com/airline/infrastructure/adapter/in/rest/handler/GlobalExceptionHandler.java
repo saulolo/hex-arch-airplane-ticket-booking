@@ -1,7 +1,7 @@
-package com.airline.infrastructure.handler;
+package com.airline.infrastructure.adapter.in.rest.handler;
 
 import com.airline.domain.exception.*;
-import com.airline.infrastructure.dto.response.ApiResponseDTO;
+import com.airline.infrastructure.adapter.in.rest.controller.dto.response.ApiResponseDTO;
 import com.airline.infrastructure.exception.ApiException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ import static com.airline.infrastructure.util.Constants.*;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-
+    
     /**
      * Gestiona DuplicateEmailException (excepción de la regla de negocio para correos electrónicos duplicados).
      *

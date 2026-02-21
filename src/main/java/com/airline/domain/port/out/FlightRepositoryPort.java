@@ -16,5 +16,3 @@ public interface FlightRepositoryPort {
     List<Flight> findByOriginAndDestination(String origin, String destination);
 
 }
-
-

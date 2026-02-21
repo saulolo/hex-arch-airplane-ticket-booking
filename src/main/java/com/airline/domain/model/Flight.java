@@ -20,7 +20,8 @@ public class Flight {
     String destination;
     LocalDateTime departureTime;
     LocalDateTime arrivalTime;
-    LocalDateTime createdDate;
     List<Ticket> tickets;
+    LocalDateTime createdAt;
+    LocalDateTime updatedAt;
 
 }

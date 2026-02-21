@@ -1,4 +1,4 @@
-package com.airline.infrastructure.dto.response;
+package com.airline.infrastructure.adapter.in.rest.controller.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
