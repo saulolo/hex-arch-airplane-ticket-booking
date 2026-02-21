@@ -1,6 +1,6 @@
 package com.airline.infrastructure.exception;
 
-import com.airline.infrastructure.handler.GlobalExceptionHandler;
+import com.airline.infrastructure.adapter.in.rest.handler.GlobalExceptionHandler;
 import org.springframework.http.HttpStatus;
 
 import static com.airline.infrastructure.util.Constants.INTERNAL_SERVER_ERROR;

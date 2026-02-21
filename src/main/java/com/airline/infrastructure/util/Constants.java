@@ -13,11 +13,10 @@ public final class Constants {
     public static final String VALIDATION_ERROR = "VALIDATION_ERROR";
 
     // ========== MENSAJES DE ERROR (GlobalExceptionHandler) ==========
+    public static final String NON_INSTANTIABLE_UTILITY_CLASS = "Clase de utilidad no instanciable";
 
-    /** Mensaje genérico para errores de validación de Bean Validation. */
     public static final String VALIDATION_ERROR_MESSAGE = "Error de validación en los datos enviados.";
 
-    /** Mensaje genérico para errores inesperados del servidor. */
     public static final String INTERNAL_ERROR_MESSAGE = "Ha ocurrido un error inesperado en el servidor.";
 
     // ========== CÓDIGOS DE ERROR DE NEGOCIO ==========
@@ -34,7 +33,7 @@ public final class Constants {
     public static final String RESERVATION_NOT_FOUND = "Reservación no encontrado con ID: %d";
 
     public static final String TICKET_NOT_FOUND = "Ticket no encontrado con ID: %d";
-
+    public static final String FLIGHTS_NOT_FOUND = "No se encontraron vuelos";
 
     // ========== MENSAJES DE ÉXITO ==========
     public static final String EMPLOYEE_CREATED = "Empleado creado exitosamente.";
@@ -43,8 +42,10 @@ public final class Constants {
     public static final String EMPLOYEE_FOUND = "Empleado encontrado.";
     public static final String EMPLOYEES_RETRIEVED = "Empleados recuperados exitosamente.";
 
+    public static final String FLIGHTS_RETRIEVED = "Vuelos encontrados con éxito.";
+
 
     private Constants() {
-        throw new UnsupportedOperationException("Clase de utilidad no instanciable");
+        throw new UnsupportedOperationException(NON_INSTANTIABLE_UTILITY_CLASS);
     }
 }
