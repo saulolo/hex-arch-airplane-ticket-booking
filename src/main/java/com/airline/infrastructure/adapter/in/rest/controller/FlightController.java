@@ -1,6 +1,6 @@
 package com.airline.infrastructure.adapter.in.rest.controller;
 
-import com.airline.application.service.FlightService;
+import com.airline.domain.port.in.FlightUseCasePort;
 import com.airline.infrastructure.adapter.in.rest.controller.dto.response.ApiResponseDTO;
 import com.airline.infrastructure.adapter.in.rest.controller.dto.response.FlightResponseDTO;
 import com.airline.infrastructure.adapter.in.rest.mapper.FlightRestMapper;
@@ -21,7 +21,7 @@ import static com.airline.infrastructure.util.Constants.FLIGHTS_RETRIEVED;
 @RequestMapping("/flights")
 public class FlightController {
 
-    private final FlightService flightService;
+    private final FlightUseCasePort flightUseCasePort;
     private final FlightRestMapper flightRestMapper;
 
     /**
@@ -37,7 +37,7 @@ public class FlightController {
             @RequestParam String destination) {
 
         List<FlightResponseDTO> flights = flightRestMapper.toFlightResponseDTOList(
-                flightService.findByOriginAndDestination(origin, destination)
+                flightUseCasePort.findByOriginAndDestination(origin, destination)
         );
 
         String message = flights.isEmpty() ? FLIGHTS_NOT_FOUND : FLIGHTS_RETRIEVED;

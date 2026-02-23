@@ -36,7 +36,7 @@ public final class FlightMapper {
                 .destination(flightEntity.getDestination())
                 .departureTime(flightEntity.getDepartureTime())
                 .arrivalTime(flightEntity.getArrivalTime())
-                .tickets(flightEntity.getTickets())
+                //.tickets(flightEntity.getTickets())
                 .createdAt(flightEntity.getCreatedAt())
                 .updatedAt(flightEntity.getUpdatedAt())
                 .build();
@@ -73,7 +73,7 @@ public final class FlightMapper {
                 .destination(flight.getDestination())
                 .departureTime(flight.getDepartureTime())
                 .arrivalTime(flight.getArrivalTime())
-                .tickets(flight.getTickets())
+                //.tickets(flight.getTickets())
                 .createdAt(flight.getCreatedAt())
                 .updatedAt(flight.getUpdatedAt())
                 .build();

@@ -1,4 +1,4 @@
-package com.airline.infrastructure;
+package com.airline.infrastructure.config;
 
 import com.airline.application.service.FlightService;
 import com.airline.domain.port.in.FlightUseCasePort;

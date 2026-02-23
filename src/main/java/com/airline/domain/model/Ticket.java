@@ -17,6 +17,7 @@ public class Ticket {
     Long idTicket;
     String ticketNumber;
     BigDecimal price;
+    @Builder.Default
     boolean isAvailable = true;
     String description;
     LocalDateTime createdDate;

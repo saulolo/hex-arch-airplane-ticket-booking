@@ -1,14 +1,11 @@
 package com.airline.infrastructure.adapter.out.persistence.jpa.entity;
 
-import com.airline.domain.model.Ticket;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Getter
@@ -42,9 +39,9 @@ public class FlightEntity {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     LocalDateTime arrivalTime;
 
-    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JsonIgnore
-    List<Ticket> tickets; //Ojo, aqui cambiar pot TicketEntity
+    //@OneToMany(mappedBy = "flight", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    //@JsonIgnore
+    //List<Ticket> tickets; //Ojo, aqui cambiar pot TicketEntity
 
     @Column(name = "created_at", nullable = false)
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")

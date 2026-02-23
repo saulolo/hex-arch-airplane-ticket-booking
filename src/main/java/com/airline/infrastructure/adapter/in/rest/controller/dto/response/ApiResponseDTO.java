@@ -10,9 +10,9 @@ import java.util.Map;
 
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"success", "message", "errorCode", "data", "errors","timestamp", "path"})
+@JsonPropertyOrder({"status", "message", "errorCode", "data", "errors","timestamp", "path"})
 public record ApiResponseDTO<T>(
-        boolean success,
+        boolean status,
         String message,
         String errorCode,
         T data,
@@ -33,7 +33,7 @@ public record ApiResponseDTO<T>(
      */
     public static <T> ApiResponseDTO<T> success(T data, String message) {
         return ApiResponseDTO.<T>builder()
-                .success(true)
+                .status(true)
                 .message(message)
                 .data(data)
                 .timestamp(LocalDateTime.now())
@@ -49,7 +49,7 @@ public record ApiResponseDTO<T>(
      */
     public static <T> ApiResponseDTO<T> success(String message) {
         return ApiResponseDTO.<T>builder()
-                .success(true)
+                .status(true)
                 .message(message)
                 .timestamp(LocalDateTime.now())
                 .build();
@@ -72,7 +72,7 @@ public record ApiResponseDTO<T>(
             String path
     ) {
         return ApiResponseDTO.<T>builder()
-                .success(false)
+                .status(false)
                 .message(message)
                 .errorCode(errorCode)
                 .timestamp(LocalDateTime.now())
@@ -95,7 +95,7 @@ public record ApiResponseDTO<T>(
             String path
     ) {
         return ApiResponseDTO.<T>builder()
-                .success(false)
+                .status(false)
                 .message(message)
                 .errorCode("VALIDATION_ERROR")
                 .errors(errors)
@@ -104,7 +104,4 @@ public record ApiResponseDTO<T>(
                 .build();
     }
 
-
 }
-
-
