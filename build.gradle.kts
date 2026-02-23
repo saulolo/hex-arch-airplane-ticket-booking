@@ -2,6 +2,7 @@ plugins {
 	java
 	id("org.springframework.boot") version "4.0.3"
 	id("io.spring.dependency-management") version "1.1.7"
+    id("jacoco")
 }
 
 group = "com.airline"
@@ -46,10 +47,85 @@ dependencies {
 
 }
 
-tasks.withType<Test> {
-	useJUnitPlatform()
+jacoco {
+    toolVersion = "0.8.11"
 }
 
-tasks.named<Jar>("jar") {
-    enabled = false
+tasks.test {
+    useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
 }
+
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        xml.required.set(true)
+        csv.required.set(false)
+        html.required.set(true)
+    }
+    finalizedBy(tasks.jacocoTestCoverageVerification)
+
+    classDirectories.setFrom(
+        files(
+            classDirectories.files.map {
+                fileTree(it) {
+                    exclude(
+                        // === Paquetes/capetas a excluir ===
+                        "**/infrastructure/adapter/in/rest/handler/**",
+                        "**/infrastructure/adapter/in/rest/controller/dto/response/**",
+                        "**/infrastructure/adapter/out/persistence/jpa/mapper/**",
+                        "**/exception/**",
+                        "**/domain/enums/**",
+                        "**/infrastructure/adapter/in/rest/mapper/**",
+                        "**/domain/exception/**",
+                        "**/infrastructure/adapter/in/rest/controller/**",
+                        "**/infrastructure/adapter/out/persistence/jpa/**",
+                        "**/infrastructure/util/**",
+                        "**/infrastructure/config/**",
+                        "**/domain/dto/**",
+                        "**/HexArchAirplaneTicketBookingApplication*"
+                    )
+                }
+            }
+        )
+    )
+}
+
+tasks.jacocoTestCoverageVerification {
+    dependsOn(tasks.test)
+    classDirectories.setFrom(
+        files(
+            tasks.jacocoTestReport.get().classDirectories.files.map {
+                fileTree(it) {
+                    exclude(
+                        "**/infrastructure/adapter/in/rest/handler/**",
+                        "**/infrastructure/adapter/in/rest/controller/dto/response/**",
+                        "**/infrastructure/adapter/out/persistence/jpa/mapper/**",
+                        "**/exception/**",
+                        "**/domain/enums/**",
+                        "**/infrastructure/adapter/in/rest/mapper/**",
+                        "**/domain/exception/**",
+                        "**/infrastructure/adapter/in/rest/controller/**",
+                        "**/infrastructure/adapter/out/persistence/jpa/**",
+                        "**/infrastructure/util/**",
+                        "**/infrastructure/config/**",
+                        "**/domain/dto/**",
+                        "**/HexArchAirplaneTicketBookingApplication*"
+                    )
+                }
+            }
+        )
+    )
+    violationRules {
+        rule {
+            element = "BUNDLE"
+            limit {
+                counter = "LINE"
+                value = "COVEREDRATIO"
+                minimum = "0.50".toBigDecimal()
+            }
+        }
+    }
+}
+

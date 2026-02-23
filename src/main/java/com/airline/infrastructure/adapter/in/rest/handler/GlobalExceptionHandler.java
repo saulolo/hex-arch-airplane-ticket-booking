@@ -128,7 +128,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponseDTO<Void>> handleApiException(ApiException ex, HttpServletRequest request) {
         log.warn("Error controlado: [{}] {} - Path: {}", ex.getErrorCode(), ex.getMessage(), request.getRequestURI());
         ApiResponseDTO<Void> response = ApiResponseDTO.<Void>builder()
-                .success(false)
+                .status(false)
                 .message(ex.getMessage())
                 .errorCode(ex.getErrorCode())
                 .timestamp(LocalDateTime.now())
@@ -180,7 +180,7 @@ public class GlobalExceptionHandler {
         log.error("Error inesperado: ", ex);
 
         ApiResponseDTO<Void> response = ApiResponseDTO.<Void>builder()
-                .success(false)
+                .status(false)
                 .message(INTERNAL_ERROR_MESSAGE)
                 .errorCode(INTERNAL_SERVER_ERROR)
                 .timestamp(LocalDateTime.now())
